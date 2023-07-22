@@ -28,8 +28,32 @@ namespace Production
 
             productionWorker.EmployeeName = textBox1.Text;
             MessageBox.Show($"Employee succesfully added");
-
             listBox1.Items.Add($"Employee name: {productionWorker.EmployeeName}");
+
+            double hourlyRate;
+            if (double.TryParse(textBox3.Text, out hourlyRate))
+            {
+                productionWorker.HourlyRate = hourlyRate;
+                listBox1.Items.Add($"Hourly Rate: {productionWorker.HourlyRate}");
+            }
+            else
+            {
+                MessageBox.Show("Invalid hourly rate. Please enter a valid numerical value.");
+            }
+            listBox1.Items.Add($"Employee Pay Rate: {productionWorker.HourlyRate} CAD Dollars");
+
+
+            if (Enum.TryParse(textBox4.Text, out ShiftType shift))
+            {
+                productionWorker.Shift = shift;
+                listBox1.Items.Add($"Shift: {productionWorker.Shift}");
+            }
+            else
+            {
+                MessageBox.Show("Invalid shift. Please enter a valid shift type (Day, Night, or Evening).");
+                return; 
+            }
+
 
             if (int.TryParse(textBox2.Text, out int employeeNumber))
             {
@@ -41,12 +65,15 @@ namespace Production
 
                 textBox1.Clear();
                 textBox2.Clear();
+                textBox3.Clear();
+                textBox4.Clear();
             }
             else
             {
                 MessageBox.Show("Invalid employee number. Please enter a valid integer value.");
             }
         }
+
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
@@ -84,6 +111,21 @@ namespace Production
         }
 
         private void EmployeesInformationDisplaye_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox4_TextChanged(object sender, EventArgs e)
         {
 
         }
